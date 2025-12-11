@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lecturas HC-SR04 — Gráfica</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding: 16px; }
+    h1 { margin-bottom: 8px; }
+    #controls { margin-bottom: 12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    #last { font-size: 1rem; }
+    #chart-wrap { max-width: 1000px; width: 100%; background:#fff; padding:8px; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    canvas { width: 100% !important; height: 420px !important; }
+    pre { background:#f4f4f4; padding:12px; border-radius:6px; max-width:900px; overflow:auto; }
+  </style>
+  <!-- Chart.js CDN (v4). No instalación necesaria -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <h1>Lecturas HC-SR04 (ESP32)</h1>
+  <div id="controls">
+    <div id="last">Cargando...</div>
+    <label>Intervalo actualización:
+      <select id="intervalSelect">
+        <option value="1000">1 s</option>
+        <option value="2000" selected>2 s</option>
+        <option value="5000">5 s</option>
+      </select>
+    </label>
+    <label>Mostrar últimas:
+      <select id="maxPointsSelect">
+        <option value="50">50</option>
+        <option value="100" selected>100</option>
+        <option value="200">200</option>
+      </select>
+    </label>
+    <button id="btnPause">Pausar</button>
+  </div>
+
+  <div id="chart-wrap">
+    <canvas id="distChart"></canvas>
+  </div>
+
+  <h3>CSV (raw)</h3>
+  <pre id="output">—</pre>
+
+  <script src="script.js"></script>
+</body>
+</html>
